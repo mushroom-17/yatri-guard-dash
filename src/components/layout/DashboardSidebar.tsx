@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   Sidebar,
   SidebarContent,
@@ -20,12 +20,19 @@ import {
   Shield,
   Globe,
   Settings,
+  Home,
 } from "lucide-react";
 
 const DashboardSidebar = () => {
   const { open, setOpen, isMobile, state, openMobile, setOpenMobile } = useSidebar();
   const location = useLocation();
+  const navigate = useNavigate();
   const currentPath = location.pathname;
+
+  const handleHomeClick = () => {
+    navigate('/');
+    if (isMobile) setOpenMobile(false);
+  };
 
   const menuItems = [
     {
@@ -62,8 +69,24 @@ const DashboardSidebar = () => {
   const isActive = (path: string) => currentPath === path;
 
   return (
-    <Sidebar className={state === "collapsed" ? "w-14" : "w-64"}>
-      <SidebarContent>
+    <Sidebar collapsible="icon">
+      <SidebarContent className="pt-2">
+        <SidebarGroup>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                asChild
+                className="mb-2 bg-primary/10 text-primary hover:bg-primary/20"
+                onClick={handleHomeClick}
+              >
+                <div className="flex items-center space-x-3 px-3 py-2 rounded-md cursor-pointer">
+                  <Home className="h-4 w-4 flex-shrink-0" />
+                  {state !== "collapsed" && <span className="text-sm font-medium">Back to Home</span>}
+                </div>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarGroup>
         {menuItems.map((section) => (
           <SidebarGroup key={section.title}>
             <SidebarGroupLabel className="text-sidebar-foreground/70">

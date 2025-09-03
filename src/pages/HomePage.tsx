@@ -3,6 +3,7 @@ import Navigation from "@/components/layout/Navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 import { 
   Shield, 
   Users, 
@@ -97,21 +98,29 @@ const HomePage = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <Button variant="government" className="w-full justify-start">
-                  <AlertTriangle className="h-4 w-4 mr-2" />
-                  Create New Alert
+                <Button asChild variant="government" className="w-full justify-start">
+                  <Link to="/create-alert">
+                    <AlertTriangle className="h-4 w-4 mr-2" />
+                    Create New Alert
+                  </Link>
                 </Button>
-                <Button variant="government-outline" className="w-full justify-start">
-                  <FileText className="h-4 w-4 mr-2" />
-                  File E-FIR
+                <Button asChild variant="government-outline" className="w-full justify-start">
+                  <Link to="/e-fir">
+                    <FileText className="h-4 w-4 mr-2" />
+                    File E-FIR
+                  </Link>
                 </Button>
-                <Button variant="government-outline" className="w-full justify-start">
-                  <Users className="h-4 w-4 mr-2" />
-                  Register Tourist
+                <Button asChild variant="government-outline" className="w-full justify-start">
+                  <Link to="/register-tourist">
+                    <Users className="h-4 w-4 mr-2" />
+                    Register Tourist
+                  </Link>
                 </Button>
-                <Button variant="government-outline" className="w-full justify-start">
-                  <BarChart3 className="h-4 w-4 mr-2" />
-                  View Reports
+                <Button asChild variant="government-outline" className="w-full justify-start">
+                  <Link to="/reports">
+                    <BarChart3 className="h-4 w-4 mr-2" />
+                    View Reports
+                  </Link>
                 </Button>
               </CardContent>
             </Card>

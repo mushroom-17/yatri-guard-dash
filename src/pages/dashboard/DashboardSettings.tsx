@@ -1,6 +1,4 @@
-import { SidebarProvider } from "@/components/ui/sidebar";
-import DashboardSidebar from "@/components/layout/DashboardSidebar";
-import Header from "@/components/layout/Header";
+import DashboardPageContainer from "@/components/layout/DashboardPageContainer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,31 +9,20 @@ import { Settings, Bell, Shield, Globe, Save } from "lucide-react";
 
 const DashboardSettings = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <SidebarProvider>
-        <div className="flex">
-          <DashboardSidebar />
-          <main className="flex-1 p-6">
-            <div className="space-y-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
-                    <Settings className="h-6 w-6 text-government" />
-                    System Settings
-                  </h1>
-                  <p className="text-muted-foreground">
-                    Configure YatriGuard system preferences and security settings
-                  </p>
-                </div>
-                <Button className="bg-government hover:bg-government/90">
-                  <Save className="h-4 w-4 mr-2" />
-                  Save Changes
-                </Button>
-              </div>
+    <DashboardPageContainer title="System Settings">
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <p className="text-muted-foreground">
+            Configure YatriGuard system preferences and security settings
+          </p>
+          <Button className="bg-government hover:bg-government/90">
+            <Save className="h-4 w-4 mr-2" />
+            Save Changes
+          </Button>
+        </div>
 
-              {/* General Settings */}
-              <Card>
+        {/* General Settings */}
+        <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Settings className="h-5 w-5 text-government" />
@@ -81,10 +68,10 @@ const DashboardSettings = () => {
                     </div>
                   </div>
                 </CardContent>
-              </Card>
+        </Card>
 
-              {/* Notification Settings */}
-              <Card>
+        {/* Notification Settings */}
+        <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Bell className="h-5 w-5 text-warning" />
@@ -118,10 +105,10 @@ const DashboardSettings = () => {
                     </div>
                   </div>
                 </CardContent>
-              </Card>
+        </Card>
 
-              {/* Security Settings */}
-              <Card>
+        {/* Security Settings */}
+        <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Shield className="h-5 w-5 text-destructive" />
@@ -178,10 +165,10 @@ const DashboardSettings = () => {
                     </div>
                   </div>
                 </CardContent>
-              </Card>
+        </Card>
 
-              {/* Language & Region */}
-              <Card>
+        {/* Language & Region */}
+        <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Globe className="h-5 w-5 text-government" />
@@ -220,12 +207,9 @@ const DashboardSettings = () => {
                     </div>
                   </div>
                 </CardContent>
-              </Card>
-            </div>
-          </main>
-        </div>
-      </SidebarProvider>
-    </div>
+        </Card>
+      </div>
+    </DashboardPageContainer>
   );
 };
 

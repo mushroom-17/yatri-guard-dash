@@ -1,9 +1,10 @@
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
 import DashboardSidebar from "@/components/layout/DashboardSidebar";
 import StatCard from "@/components/dashboard/StatCard";
 import GISMap from "@/components/dashboard/GISMap";
 import DataTable from "@/components/dashboard/DataTable";
-import { Users, AlertTriangle, UserX, CheckCircle } from "lucide-react";
+import { Users, AlertTriangle, UserX, CheckCircle, Menu } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const Dashboard = () => {
   // Mock data for demonstration
@@ -116,125 +117,126 @@ const Dashboard = () => {
   ];
 
   return (
-    <SidebarProvider>
-      <div className="min-h-screen flex w-full bg-background">
+    <SidebarProvider defaultOpen={true}>
+      <div className="min-h-screen bg-background flex">
         <DashboardSidebar />
         
-        <main className="flex-1 overflow-auto">
+        {/* Main Content */}
+        <SidebarInset>
           {/* Header */}
-          <header className="border-b border-border bg-background/95 backdrop-blur-md sticky top-0 z-40">
-            <div className="flex items-center justify-between px-6 py-4">
-              <div className="flex items-center space-x-4">
-                <SidebarTrigger />
-                <div>
-                  <h1 className="text-2xl font-bold text-foreground">Dashboard Overview</h1>
-                  <p className="text-sm text-muted-foreground">Real-time tourism and security monitoring</p>
-                </div>
-              </div>
+          <header className="bg-white border-b border-gray-200 h-14 flex items-center px-4">
+            <div className="flex items-center space-x-4">
+              <SidebarTrigger className="md:hidden">
+                <Menu className="h-5 w-5" />
+              </SidebarTrigger>
+              <h1 className="text-xl font-semibold text-gray-900">Dashboard</h1>
             </div>
           </header>
 
-          <div className="p-6 space-y-6">
-            {/* Statistics Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <StatCard
-                title="Active Tourists"
-                value="2,847"
-                icon={Users}
-                trend={{ value: 12, isPositive: true }}
-                variant="success"
-              />
-              <StatCard
-                title="Open Alerts"
-                value="23"
-                icon={AlertTriangle}
-                trend={{ value: 5, isPositive: false }}
-                variant="warning"
-              />
-              <StatCard
-                title="Missing Cases"
-                value="3"
-                icon={UserX}
-                trend={{ value: 1, isPositive: false }}
-                variant="destructive"
-              />
-              <StatCard
-                title="Resolved Cases"
-                value="187"
-                icon={CheckCircle}
-                trend={{ value: 8, isPositive: true }}
-                variant="success"
-              />
-            </div>
-
-            {/* GIS Map */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div className="lg:col-span-2">
-                <GISMap />
+          {/* Page Content */}
+          <main className="flex-1 overflow-y-auto p-6">
+            <div className="grid gap-6">
+              {/* Stats Grid */}
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                <StatCard
+                  title="Active Tourists"
+                  value="2,847"
+                  icon={Users}
+                  trend={{ value: 12, isPositive: true }}
+                  variant="success"
+                />
+                <StatCard
+                  title="Open Alerts"
+                  value="23"
+                  icon={AlertTriangle}
+                  trend={{ value: 5, isPositive: false }}
+                  variant="warning"
+                />
+                <StatCard
+                  title="Missing Cases"
+                  value="3"
+                  icon={UserX}
+                  trend={{ value: 1, isPositive: false }}
+                  variant="destructive"
+                />
+                <StatCard
+                  title="Resolved Cases"
+                  value="187"
+                  icon={CheckCircle}
+                  trend={{ value: 8, isPositive: true }}
+                  variant="success"
+                />
               </div>
-              
-              {/* Quick Info Panel */}
-              <div className="space-y-4">
-                <div className="bg-card border border-border rounded-lg p-4 shadow-card">
-                  <h3 className="font-semibold text-foreground mb-3">System Status</h3>
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-muted-foreground">Database</span>
-                      <span className="text-sm text-success font-medium">Online</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-muted-foreground">GPS Tracking</span>
-                      <span className="text-sm text-success font-medium">Active</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-muted-foreground">Alert System</span>
-                      <span className="text-sm text-success font-medium">Running</span>
-                    </div>
-                  </div>
+
+              {/* GIS Map */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="lg:col-span-2">
+                  <GISMap />
                 </div>
                 
-                <div className="bg-card border border-border rounded-lg p-4 shadow-card">
-                  <h3 className="font-semibold text-foreground mb-3">Today's Summary</h3>
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-muted-foreground">New Check-ins</span>
-                      <span className="text-sm font-medium">127</span>
+                {/* Quick Info Panel */}
+                <div className="space-y-4">
+                  <div className="bg-card border border-border rounded-lg p-4 shadow-card">
+                    <h3 className="font-semibold text-foreground mb-3">System Status</h3>
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-muted-foreground">Database</span>
+                        <span className="text-sm text-success font-medium">Online</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-muted-foreground">GPS Tracking</span>
+                        <span className="text-sm text-success font-medium">Active</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-muted-foreground">Alert System</span>
+                        <span className="text-sm text-success font-medium">Running</span>
+                      </div>
                     </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-muted-foreground">Alerts Resolved</span>
-                      <span className="text-sm font-medium">18</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-muted-foreground">E-FIRs Filed</span>
-                      <span className="text-sm font-medium">8</span>
+                  </div>
+                  
+                  <div className="bg-card border border-border rounded-lg p-4 shadow-card">
+                    <h3 className="font-semibold text-foreground mb-3">Today's Summary</h3>
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-muted-foreground">New Check-ins</span>
+                        <span className="text-sm font-medium">127</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-muted-foreground">Alerts Resolved</span>
+                        <span className="text-sm font-medium">18</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-muted-foreground">E-FIRs Filed</span>
+                        <span className="text-sm font-medium">8</span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Data Tables */}
-            <div className="space-y-6">
-              <DataTable
-                title="Alert History"
-                data={alertHistory}
-                columns={alertColumns}
-              />
-              
-              <DataTable
-                title="Tourist Records"
-                data={touristRecords}
-                columns={touristColumns}
-              />
-              
-              <DataTable
-                title="E-FIR Records"
-                data={efirRecords}
-                columns={efirColumns}
-              />
+              {/* Data Tables */}
+              <div className="space-y-6">
+                <DataTable
+                  title="Alert History"
+                  data={alertHistory}
+                  columns={alertColumns}
+                />
+                
+                <DataTable
+                  title="Tourist Records"
+                  data={touristRecords}
+                  columns={touristColumns}
+                />
+                
+                <DataTable
+                  title="E-FIR Records"
+                  data={efirRecords}
+                  columns={efirColumns}
+                />
+              </div>
             </div>
-          </div>
-        </main>
+          </main>
+        </SidebarInset>
       </div>
     </SidebarProvider>
   );

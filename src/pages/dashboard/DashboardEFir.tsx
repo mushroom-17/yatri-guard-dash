@@ -1,6 +1,4 @@
-import { SidebarProvider } from "@/components/ui/sidebar";
-import DashboardSidebar from "@/components/layout/DashboardSidebar";
-import Header from "@/components/layout/Header";
+import DashboardPageContainer from "@/components/layout/DashboardPageContainer";
 import DataTable from "@/components/dashboard/DataTable";
 import { Badge } from "@/components/ui/badge";
 
@@ -58,29 +56,18 @@ const DashboardEFir = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <SidebarProvider>
-        <div className="flex">
-          <DashboardSidebar />
-          <main className="flex-1 p-6">
-            <div className="space-y-6">
-              <div>
-                <h1 className="text-2xl font-bold text-foreground">E-FIR System</h1>
-                <p className="text-muted-foreground">
-                  Digital First Information Report management
-                </p>
-              </div>
-              <DataTable 
-                title="E-FIR Records"
-                data={efirData}
-                columns={efirColumns}
-              />
-            </div>
-          </main>
-        </div>
-      </SidebarProvider>
-    </div>
+    <DashboardPageContainer title="E-FIR System">
+      <div className="space-y-6">
+        <p className="text-muted-foreground">
+          Digital First Information Report management
+        </p>
+        <DataTable 
+          title="E-FIR Records"
+          data={efirData}
+          columns={efirColumns}
+        />
+      </div>
+    </DashboardPageContainer>
   );
 };
 

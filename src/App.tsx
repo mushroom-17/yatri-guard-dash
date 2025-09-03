@@ -19,6 +19,8 @@ import DashboardReports from "./pages/dashboard/DashboardReports";
 import DashboardStatistics from "./pages/dashboard/DashboardStatistics";
 import DashboardSettings from "./pages/dashboard/DashboardSettings";
 import NotFound from "./pages/NotFound";
+import RegisterTourist from "./pages/RegisterTourist";
+import CreateAlert from "./pages/CreateAlert";
 
 const queryClient = new QueryClient();
 
@@ -43,6 +45,8 @@ const App = () => (
           <Route path="/alerts" element={<Alerts />} />
           <Route path="/e-fir" element={<EFir />} />
           <Route path="/reports" element={<Reports />} />
+          <Route path="/register-tourist" element={<RegisterTourist />} />
+          <Route path="/create-alert" element={<CreateAlert />} />
           <Route path="/contact" element={<Contact />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

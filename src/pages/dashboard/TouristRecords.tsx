@@ -1,6 +1,4 @@
-import { SidebarProvider } from "@/components/ui/sidebar";
-import DashboardSidebar from "@/components/layout/DashboardSidebar";
-import Header from "@/components/layout/Header";
+import DashboardPageContainer from "@/components/layout/DashboardPageContainer";
 import DataTable from "@/components/dashboard/DataTable";
 import { Badge } from "@/components/ui/badge";
 
@@ -57,29 +55,18 @@ const TouristRecords = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <SidebarProvider>
-        <div className="flex">
-          <DashboardSidebar />
-          <main className="flex-1 p-6">
-            <div className="space-y-6">
-              <div>
-                <h1 className="text-2xl font-bold text-foreground">Tourist Records</h1>
-                <p className="text-muted-foreground">
-                  Comprehensive database of registered tourists
-                </p>
-              </div>
-              <DataTable 
-                title="All Tourist Records"
-                data={touristData}
-                columns={touristColumns}
-              />
-            </div>
-          </main>
-        </div>
-      </SidebarProvider>
-    </div>
+    <DashboardPageContainer title="Tourist Records">
+      <div className="space-y-6">
+        <p className="text-muted-foreground">
+          Comprehensive database of registered tourists
+        </p>
+        <DataTable 
+          title="All Tourist Records"
+          data={touristData}
+          columns={touristColumns}
+        />
+      </div>
+    </DashboardPageContainer>
   );
 };
 

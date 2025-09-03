@@ -1,28 +1,18 @@
-import { SidebarProvider } from "@/components/ui/sidebar";
-import DashboardSidebar from "@/components/layout/DashboardSidebar";
-import Header from "@/components/layout/Header";
+import DashboardPageContainer from "@/components/layout/DashboardPageContainer";
 import StatCard from "@/components/dashboard/StatCard";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, Shield, AlertTriangle, FileText, TrendingUp, Globe } from "lucide-react";
 
 const DashboardStatistics = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <SidebarProvider>
-        <div className="flex">
-          <DashboardSidebar />
-          <main className="flex-1 p-6">
-            <div className="space-y-6">
-              <div>
-                <h1 className="text-2xl font-bold text-foreground">System Statistics</h1>
-                <p className="text-muted-foreground">
-                  Comprehensive overview of YatriGuard system metrics
-                </p>
-              </div>
+    <DashboardPageContainer title="System Statistics">
+      <div className="space-y-6">
+        <p className="text-muted-foreground">
+          Comprehensive overview of YatriGuard system metrics
+        </p>
 
-              {/* Main Stats */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        {/* Main Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <StatCard
                   title="Active Tourists"
                   value="1,247"
@@ -47,10 +37,10 @@ const DashboardStatistics = () => {
                   trend={{ value: 15, isPositive: true }}
                   icon={FileText}
                 />
-              </div>
+        </div>
 
-              {/* Detailed Analytics */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Detailed Analytics */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
@@ -108,39 +98,36 @@ const DashboardStatistics = () => {
                     </div>
                   </CardContent>
                 </Card>
-              </div>
-
-              {/* Safety Metrics */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Safety & Security Metrics</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div className="text-center p-4 border rounded-lg">
-                      <p className="text-2xl font-bold text-success">98.5%</p>
-                      <p className="text-sm text-muted-foreground">Safety Success Rate</p>
-                    </div>
-                    <div className="text-center p-4 border rounded-lg">
-                      <p className="text-2xl font-bold text-government">4.2 min</p>
-                      <p className="text-sm text-muted-foreground">Avg Response Time</p>
-                    </div>
-                    <div className="text-center p-4 border rounded-lg">
-                      <p className="text-2xl font-bold text-warning">12</p>
-                      <p className="text-sm text-muted-foreground">Open Cases</p>
-                    </div>
-                    <div className="text-center p-4 border rounded-lg">
-                      <p className="text-2xl font-bold text-success">99.1%</p>
-                      <p className="text-sm text-muted-foreground">System Uptime</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </main>
         </div>
-      </SidebarProvider>
-    </div>
+
+        {/* Safety Metrics */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Safety & Security Metrics</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="text-center p-4 border rounded-lg">
+                <p className="text-2xl font-bold text-success">98.5%</p>
+                <p className="text-sm text-muted-foreground">Safety Success Rate</p>
+              </div>
+              <div className="text-center p-4 border rounded-lg">
+                <p className="text-2xl font-bold text-government">4.2 min</p>
+                <p className="text-sm text-muted-foreground">Avg Response Time</p>
+              </div>
+              <div className="text-center p-4 border rounded-lg">
+                <p className="text-2xl font-bold text-warning">12</p>
+                <p className="text-sm text-muted-foreground">Open Cases</p>
+              </div>
+              <div className="text-center p-4 border rounded-lg">
+                <p className="text-2xl font-bold text-success">99.1%</p>
+                <p className="text-sm text-muted-foreground">System Uptime</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </DashboardPageContainer>
   );
 };
 
