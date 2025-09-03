@@ -190,7 +190,7 @@ const HomePage = () => {
         {/* Footer */}
         <footer className="mt-12 pt-8 border-t border-border">
           <div className="text-center text-sm text-muted-foreground">
-            <p>© 2024 Government of India | YatriGuard Digital Platform</p>
+            <p>© 2025 Government of India | YatriGuard Digital Platform</p>
             <p className="mt-1">For official use only by authorized personnel</p>
           </div>
         </footer>
